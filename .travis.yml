@@ -16,6 +16,10 @@ php:
   - 7
   - hhvm
 
+branches:
+  - only:
+    - "8.x-1.x"
+
 matrix:
   fast_finish: true
   allow_failures:
@@ -93,8 +97,9 @@ mysql:
 
 before_install:
   - composer self-update
-  # - cd ./tests
   - composer global require "lionsad/drupal_ti:1.*"
+  # Install library dependencies.
+  - composer install
   - drupal-ti before_install
 
 install:
